@@ -8,7 +8,7 @@ const CardsColores = (props) => {
         <Container>
           <Row>
             {props.colores.map((color, i) => (
-              <ItemColor key={i} color={color}></ItemColor>
+              <ItemColor key={i} color={color} borrarColor ={props.borrarColor}></ItemColor>
             ))}
           </Row>
         </Container>

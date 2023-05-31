@@ -7,7 +7,7 @@ const ItemColor = (props) => {
           <Card.Header className="text-center">
             {props.color.toString().toUpperCase()}
           </Card.Header>
-          <Button style={{width : "80px"}} className='my-4' variant="danger">Borrar</Button>
+          <Button style={{width : "80px"}} onClick={()=>props.borrarColor(props.color)} className='my-4' variant="danger">Borrar</Button>
           <Card.Body
             style={{ backgroundColor: props.color, width: "80px", height: "80px" }}
           >

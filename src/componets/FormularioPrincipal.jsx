@@ -1,16 +1,24 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import CardsColores from "./CardsColores";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const FormularioPrincipal = () => {
+    let getColor = JSON.parse(localStorage.getItem("listaColor")) || [];
     //con este controlo input
     const [color, setColor] = useState("");
     //con este controlo el array
-    const [colores, setColores] = useState([]);
+    const [colores, setColores] = useState(getColor);
     const handleSubmit = (e) =>{
         e.preventDefault()
         setColores([...colores,color]);
         e.target.reset()
+    }
+    useEffect(()=>{
+        localStorage.setItem("listaColor" , JSON.stringify(colores))
+    },[colores]);
+    const borrarColor = (colorIngresado) =>{
+        let traerColor = colores.filter((iColor) => iColor !== colorIngresado)
+        setColores(traerColor)
     }
   return (
     <>
@@ -30,7 +38,7 @@ const FormularioPrincipal = () => {
           Guardar
         </Button>
       </Form>
-      <CardsColores colores={colores}></CardsColores>
+      <CardsColores colores={colores} borrarColor={borrarColor}></CardsColores>
     </>
   );
 };
